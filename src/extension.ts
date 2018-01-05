@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   //context.subscriptions.push(disposable1);
 
-  let previewUri = vscode.Uri.parse("js-preview://authority/js-preview");
+  let liveURI = vscode.Uri.parse("flowmaker://authority/flowmaker");
 
   class TextDocumentContentProvider
     implements vscode.TextDocumentContentProvider {
@@ -59,24 +59,26 @@ export function activate(context: vscode.ExtensionContext) {
       return `<body>${svg}</body>`;
     }
   }
+
   let provider = new TextDocumentContentProvider();
+
   let registration = vscode.workspace.registerTextDocumentContentProvider(
-    "js-preview",
+    "flowmaker",
     provider
   );
 
   vscode.workspace.onDidChangeTextDocument(
-    (e: vscode.TextDocumentChangeEvent) => {
-      if (e.document === vscode.window.activeTextEditor.document) {
-        provider.update(previewUri);
+    (caught: vscode.TextDocumentChangeEvent) => {
+      if (caught.document === vscode.window.activeTextEditor.document) {
+        provider.update(liveURI);
       }
     }
   );
 
   vscode.window.onDidChangeTextEditorSelection(
-    (e: vscode.TextEditorSelectionChangeEvent) => {
-      if (e.textEditor === vscode.window.activeTextEditor) {
-        provider.update(previewUri);
+    (caught: vscode.TextEditorSelectionChangeEvent) => {
+      if (caught.textEditor === vscode.window.activeTextEditor) {
+        provider.update(liveURI);
       }
     }
   );
@@ -87,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
       return vscode.commands
         .executeCommand(
           "vscode.previewHtml",
-          previewUri,
+          liveURI,
           vscode.ViewColumn.Two,
           "flowmaker"
         )
