@@ -25,7 +25,11 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable);*/
 
     let previewUri = vscode.Uri.parse('js-preview://authority/js-preview');
+        class TextDocumentContentProvider implements vscode.TextDocumentContentProvider {
 
+        }
+        let provider = new TextDocumentContentProvider();
+        let registration = vscode.workspace.registerTextDocumentContentProvider('js-preview', provider);
 }
 
 // this method is called when your extension is deactivated
