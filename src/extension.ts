@@ -30,7 +30,8 @@ export function activate(context: vscode.ExtensionContext) {
             
             private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
 
-            
+            public provideTextDocumentContent(uri: vscode.Uri): string {
+            }
 
             get onDidChange(): vscode.Event<vscode.Uri> {
                 return this._onDidChange.event;
