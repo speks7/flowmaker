@@ -25,8 +25,12 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable);*/
 
     let previewUri = vscode.Uri.parse('js-preview://authority/js-preview');
+        
         class TextDocumentContentProvider implements vscode.TextDocumentContentProvider {
+            
             private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
+
+            
 
             get onDidChange(): vscode.Event<vscode.Uri> {
                 return this._onDidChange.event;
@@ -65,7 +69,7 @@ export function activate(context: vscode.ExtensionContext) {
                     ${svg}
                 </body>`
             }
-            
+
         }
         let provider = new TextDocumentContentProvider();
         let registration = vscode.workspace.registerTextDocumentContentProvider('js-preview', provider);
