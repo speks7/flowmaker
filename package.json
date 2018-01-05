@@ -11,14 +11,18 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.onBrowser"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "extension.onBrowser",
+                "title": "Flowmaker on browser"
+            },
+            {
+                "command": "extension.onEditor",
+                "title": "Flowmaker on Editor"
             }
         ]
     },

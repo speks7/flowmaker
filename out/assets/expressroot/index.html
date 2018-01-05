@@ -21,6 +21,7 @@
     socket.on('update',function(data){
       $('div.main').html(data.svg);
       console.log("new update");
+      console.log(data.svg);
     });
   });
 </script>

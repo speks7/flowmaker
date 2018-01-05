@@ -7,78 +7,61 @@ import * as js2flowchart from 'js2flowchart';
 import {window,commands, Uri} from 'vscode';
 import { dirname } from 'path';
 import {ExtensionConstants} from './constants';
+import {FlowOnBrowser} from './onBrowserManager'
+import {TextDocumentContentProvider} from './onEditorManager';
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 let flowBrowser : FlowOnBrowser;
+let flowVS : TextDocumentContentProvider;
+//let flowVSCpde:
 export function activate(context: vscode.ExtensionContext) {
 
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
     console.log('active!');
-    flowBrowser=new FlowOnBrowser();
+    
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('extension.sayHello', () => {
+    let disposableBrowser = vscode.commands.registerCommand('extension.onBrowser', () => {
         // The code you place here will be executed every time your command is executed
-
         // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!');
+        flowBrowser=new FlowOnBrowser();
+        vscode.window.showInformationMessage('Server started successfully on http:localhost:'+ExtensionConstants.PORT);
     });
-    context.subscriptions.push(disposable);
-}
-class FlowOnBrowser{
-    static app :express;
-    static server:HTTP.Server;
-    static io;
-    constructor()
-    {
-        FlowOnBrowser.app= express();
-        FlowOnBrowser.app.use(express.static(ExtensionConstants.EXPRESSROOT));
-        FlowOnBrowser.server=HTTP.createServer(FlowOnBrowser.app);
-        FlowOnBrowser.io=socket.listen(FlowOnBrowser.server);
-        FlowOnBrowser.server.listen(ExtensionConstants.PORT);
-        window.onDidChangeTextEditorSelection(this.showFlow);
-        window.onDidChangeActiveTextEditor(this.showFlow);
+    let disposableOnVSCode = vscode.commands.registerCommand("extension.onEditor",() => {
+        flowVS = new TextDocumentContentProvider();
+        let registration = vscode.workspace.registerTextDocumentContentProvider("flowmaker", flowVS);
+
+        vscode.workspace.onDidChangeTextDocument(
+            (caught: vscode.TextDocumentChangeEvent) => {
+              if (caught.document === vscode.window.activeTextEditor.document) {
+                flowVS.update(ExtensionConstants.liveURI);
+              }
+            }
+          );
+          vscode.window.onDidChangeTextEditorSelection(
+            (caught: vscode.TextEditorSelectionChangeEvent) => {
+              if (caught.textEditor === vscode.window.activeTextEditor) {
+                flowVS.update(ExtensionConstants.liveURI);
+              }
+            }
+          );
+          return vscode.commands.executeCommand("vscode.previewHtml",
+                            ExtensionConstants.liveURI,
+                            vscode.ViewColumn.Two,
+                            "flowmaker"
+                             );
         
-        this.showFlow=this.showFlow.bind(this);
-        this.initializeEventHandlers();
-    }
-    private initializeEventHandlers(){
-        console.log('event handelers initialized');
-        FlowOnBrowser.app.get('/',(req,res)=>{
-            res.sendFile(__dirname+'/html/index.html');
         });
-        FlowOnBrowser.io.sockets.on('connection',(socket)=>{
-            console.log('new connection');
-            this.showFlow();
-        });
-    }
-    private showFlow()
-    {
-        let editor = window.activeTextEditor;//.document.getText();;
-        if (!editor) 
-        {
-            console.log('null editor');
-            return;
-        }
-       let code=editor.document.getText();
-       if(code)
-       {
-        const svg = js2flowchart.convertCodeToSvg(code);
-        console.log('updating flow '+code);
-        FlowOnBrowser.io.emit('update',{svg});
-       }
-    }
-    public stopServer()
-    {
-        FlowOnBrowser.server.close();
-    }
+    context.subscriptions.push(disposableBrowser);
+    context.subscriptions.push(disposableOnVSCode);
 }
 // this method is called when your extension is deactivated
 export function deactivate() {
-    flowBrowser.stopServer();
+    if(flowBrowser)
+        flowBrowser.stopServer();
 }
