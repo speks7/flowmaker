@@ -44,6 +44,21 @@ export function activate(context: vscode.ExtensionContext) {
                 //return this.extractSnippet();
             }
 
+            private errorSnippet(error: string): string {
+                return `
+                    <body>
+                        ${error}
+                    </body>`;
+            }
+
+            private snippet(svg): string {
+                // const properties = document.getText().slice(propStart + 1, propEnd);
+                return  `
+                <body>
+                    ${svg}
+                </body>`
+            }
+
         }
         let provider = new TextDocumentContentProvider();
         let registration = vscode.workspace.registerTextDocumentContentProvider('js-preview', provider);
