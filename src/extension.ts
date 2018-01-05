@@ -52,11 +52,7 @@ export function activate(context: vscode.ExtensionContext) {
     private createJsPreview() {
       let editor = vscode.window.activeTextEditor;
       if (!(editor.document.languageId === "javascript")) {
-        return this.errorSnippet(
-          `Active editor doesn't show a JS document - nothen to preview. ${
-            editor.document.languageId
-          }`
-        );
+        return 'Only .js file is supported';
       }
       return this.extractSnippet();
     }
@@ -65,21 +61,8 @@ export function activate(context: vscode.ExtensionContext) {
       let editor = vscode.window.activeTextEditor;
       let text = editor.document.getText();
       const svg = js2flowchart.convertCodeToSvg(text);
-      return this.snippet(svg);
-    }
-
-    private errorSnippet(error: string): string {
-      return `
-                    <body>
-                        ${error}
-                    </body>`;
-    }
-
-    private snippet(svg): string {
-      return `
-                <body>
-                    ${svg}
-                </body>`;
+      //return this.snippet(svg);
+      return `<body>${svg}</body>`;
     }
   }
   let provider = new TextDocumentContentProvider();
