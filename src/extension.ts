@@ -31,6 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
             private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
 
             public provideTextDocumentContent(uri: vscode.Uri): string {
+                return this.createJsPreview();
             }
 
             get onDidChange(): vscode.Event<vscode.Uri> {
@@ -44,9 +45,9 @@ export function activate(context: vscode.ExtensionContext) {
             private createJsPreview() {
                 let editor = vscode.window.activeTextEditor;
                 if (!(editor.document.languageId === 'javascript')) {
-                    //return this.errorSnippet(`Active editor doesn't show a JS document - nothen to preview. ${editor.document.languageId}`)
+                    return this.errorSnippet(`Active editor doesn't show a JS document - nothen to preview. ${editor.document.languageId}`)
                 }
-                //return this.extractSnippet();
+                return this.extractSnippet();
             }
 
             private extractSnippet(): string {
