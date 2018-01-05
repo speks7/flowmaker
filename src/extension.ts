@@ -27,7 +27,11 @@ export function activate(context: vscode.ExtensionContext) {
     let previewUri = vscode.Uri.parse('js-preview://authority/js-preview');
         class TextDocumentContentProvider implements vscode.TextDocumentContentProvider {
             private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
-            
+
+            get onDidChange(): vscode.Event<vscode.Uri> {
+                return this._onDidChange.event;
+            }
+
             public update(uri: vscode.Uri) {
                 this._onDidChange.fire(uri);
             }
