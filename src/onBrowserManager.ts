@@ -50,8 +50,9 @@ export class FlowOnBrowser{
        if(code)
        {
         const svg = js2flowchart.convertCodeToSvg(code);
+        const fileName=editor.document.fileName;
         console.log('updating flow '+code);
-        FlowOnBrowser.io.emit('update',{svg});
+        FlowOnBrowser.io.emit('update',{svg,fileName});
        }
     }
     public stopServer()
