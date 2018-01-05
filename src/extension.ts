@@ -33,13 +33,13 @@ export function activate(context: vscode.ExtensionContext) {
 
         vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
             if (e.document === vscode.window.activeTextEditor.document) {
-                provider.update(previewUri);
+                //provider.update(previewUri);
             }
         });
     
         vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
             if (e.textEditor === vscode.window.activeTextEditor) {
-                provider.update(previewUri);
+                //provider.update(previewUri);
             }
         })
 }
