@@ -30,6 +30,18 @@ export function activate(context: vscode.ExtensionContext) {
         }
         let provider = new TextDocumentContentProvider();
         let registration = vscode.workspace.registerTextDocumentContentProvider('js-preview', provider);
+
+        vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
+            if (e.document === vscode.window.activeTextEditor.document) {
+                provider.update(previewUri);
+            }
+        });
+    
+        vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
+            if (e.textEditor === vscode.window.activeTextEditor) {
+                provider.update(previewUri);
+            }
+        })
 }
 
 // this method is called when your extension is deactivated
