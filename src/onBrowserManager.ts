@@ -40,20 +40,25 @@ export class FlowOnBrowser{
     }
     private showFlow()
     {
+        let svg:string;
+        let fileName="";
         let editor = window.activeTextEditor;
         if (!editor) 
+            svg='<p>No editor is opened</p>';
+        else if(editor.document.languageId!== "javascript")
+            svg='<p>Opened file is not a js file</p>';
+        else
         {
-            console.log('null editor');
-            return;
+            let code=editor.document.getText();
+            if(!code)
+                svg='<p>Empty js file</p>';
+            else
+            {
+                svg = js2flowchart.convertCodeToSvg(code);
+                fileName=editor.document.fileName;
+            }
         }
-       let code=editor.document.getText();
-       if(code)
-       {
-        const svg = js2flowchart.convertCodeToSvg(code);
-        const fileName=editor.document.fileName;
-        console.log('updating flow '+code);
-        FlowOnBrowser.io.emit('update',{svg,fileName});
-       }
+       FlowOnBrowser.io.emit('update',{svg,fileName});
     }
     public stopServer()
     {
