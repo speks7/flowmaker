@@ -38,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
     private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
 
     public provideTextDocumentContent(uri: vscode.Uri): string {
-      return this.createJsPreview();
+      return this.JsRenderView();
     }
 
     get onDidChange(): vscode.Event<vscode.Uri> {
@@ -49,19 +49,13 @@ export function activate(context: vscode.ExtensionContext) {
       this._onDidChange.fire(uri);
     }
 
-    private createJsPreview() {
-      let editor = vscode.window.activeTextEditor;
-      if (!(editor.document.languageId === "javascript")) {
-        return 'Only .js file is supported';
+    private JsRenderView() {
+      let WindowP = vscode.window.activeTextEditor;
+      if (!(WindowP.document.languageId === "javascript")) {
+        return "Only .js file is supported";
       }
-      return this.extractSnippet();
-    }
-
-    private extractSnippet(): string {
-      let editor = vscode.window.activeTextEditor;
-      let text = editor.document.getText();
+      let text = WindowP.document.getText();
       const svg = js2flowchart.convertCodeToSvg(text);
-      //return this.snippet(svg);
       return `<body>${svg}</body>`;
     }
   }
