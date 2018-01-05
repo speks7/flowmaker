@@ -74,7 +74,6 @@ export function activate(context: vscode.ExtensionContext) {
             }
 
             private snippet(svg): string {
-                // const properties = document.getText().slice(propStart + 1, propEnd);
                 return  `
                 <body>
                     ${svg}
@@ -97,13 +96,13 @@ export function activate(context: vscode.ExtensionContext) {
             }
         })
 
-        let disposable = vscode.commands.registerCommand('extension.showJsFlowchart', () => {
-            return vscode.commands.executeCommand('vscode.previewHtml', previewUri, vscode.ViewColumn.Two, 'JS Flowchart').then((success) => {
+        let disposable = vscode.commands.registerCommand('extension.flowmaker', () => {
+            return vscode.commands.executeCommand('vscode.previewHtml', previewUri, vscode.ViewColumn.Two, 'flowmaker').then((success) => {
             }, (reason) => {
                 vscode.window.showErrorMessage(reason);
             });
         });
-        
+
         let highlight = vscode.window.createTextEditorDecorationType({ backgroundColor: 'rgba(200,200,200,.35)' });
 
         context.subscriptions.push(disposable, registration);
