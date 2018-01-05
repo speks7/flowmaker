@@ -52,6 +52,8 @@ export function activate(context: vscode.ExtensionContext) {
 
         let highlight = vscode.window.createTextEditorDecorationType({ backgroundColor: 'rgba(200,200,200,.35)' });
 
+        context.subscriptions.push(disposable, registration);
+
 }
 
 // this method is called when your extension is deactivated
