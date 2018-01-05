@@ -4,25 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script
-			  src="./jquery-3.2.1.min.js"></script>
-<script src="./socket.io.js"></script>
+  <script src="./jquery-3.2.1.min.js"></script> 
+  <script src="./socket.io.js"></script>
+  <script src="./FileSaver.min.js"></script>
   <title>Flow generate</title>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+<style>
+  #downloadFile {
+    position: fixed;
+    right: 20px;
+    top: 15px;
+    padding: 5px 10px;
+    background: white;
+    border: 1px solid #2288ff;
+    outline: none;
+    font-weight: bold;
+    color: #2288ff;
+    font-family: sans-serif;
+    cursor: pointer;
+    z-index: 10;
+}
+</style>
 </head>
 <body>
-    <div class="main">
+    <div class="SVG-Container">
         test
       </div>
+      <button id="downloadFile">DOWNLOAD SVG FILE</button>
 </body>
 <script>
-  $(()=>{
-    let socket=io.connect();
-    socket.on('update',function(data){
-      $('div.main').html(data.svg);
+  function updateSVG(data)
+  {
+      $('div.SVG-Container').html(data.svg);
       console.log("new update");
       console.log(data.svg);
-    });
+  }
+  function SVGSave()
+  {
+    if(!$('div.SVG-Container').html())
+      alert("Empty flowchart");
+    else
+    {
+      const fileName = `flowchart_${(new Date().toString()).replace(/ /g,'_')}.svg`;
+      file = new File([$('div.SVG-Container').html()], fileName, {type: 'image/svg+xml;charset=utf-8'});
+      window.saveAs(file, fileName);
+    }
+  }
+  
+  $(()=>{
+    let socket=io.connect();
+    socket.on('update',(data)=>{updateSVG(data)});
+    $('button#downloadFile').click(SVGSave);
   });
 </script>
 </html>
