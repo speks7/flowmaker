@@ -42,6 +42,14 @@ export function activate(context: vscode.ExtensionContext) {
                 //provider.update(previewUri);
             }
         })
+
+        let disposable = vscode.commands.registerCommand('extension.showJsFlowchart', () => {
+            return vscode.commands.executeCommand('vscode.previewHtml', previewUri, vscode.ViewColumn.Two, 'JS Flowchart').then((success) => {
+            }, (reason) => {
+                vscode.window.showErrorMessage(reason);
+            });
+        });
+
 }
 
 // this method is called when your extension is deactivated
