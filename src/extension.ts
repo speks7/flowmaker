@@ -44,6 +44,13 @@ export function activate(context: vscode.ExtensionContext) {
                 //return this.extractSnippet();
             }
 
+            private extractSnippet(): string {
+                let editor = vscode.window.activeTextEditor;
+                let text = editor.document.getText();
+                const svg = js2flowchart.convertCodeToSvg(text)
+                return this.snippet(svg)
+            }
+
             private errorSnippet(error: string): string {
                 return `
                     <body>
@@ -58,7 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
                     ${svg}
                 </body>`
             }
-
+            
         }
         let provider = new TextDocumentContentProvider();
         let registration = vscode.workspace.registerTextDocumentContentProvider('js-preview', provider);
