@@ -3,7 +3,7 @@
     "displayName": "flowmaker",
     "description": "vs code extension for live js code visualization'",
     "version": "0.0.1",
-    "publisher": "psuzn",
+    "publisher": "Speks",
     "engines": {
         "vscode": "^1.19.0"
     },
@@ -18,9 +18,17 @@
         "commands": [
             {
                 "command": "extension.flowmaker",
-                "title": "Hello World"
+                "title": "Flowmake Magic"
             }
-        ]
+        ],
+        "menus": {
+            "editor/title": [
+                {
+                    "command": "extension.flowmaker",
+                    "when": "resourceLangId == js"
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
