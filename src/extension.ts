@@ -26,20 +26,24 @@ export function activate(context: vscode.ExtensionContext) {
 
     let previewUri = vscode.Uri.parse('js-preview://authority/js-preview');
         class TextDocumentContentProvider implements vscode.TextDocumentContentProvider {
-
+            private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
+            
+            public update(uri: vscode.Uri) {
+                this._onDidChange.fire(uri);
+            }
         }
         let provider = new TextDocumentContentProvider();
         let registration = vscode.workspace.registerTextDocumentContentProvider('js-preview', provider);
 
         vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
             if (e.document === vscode.window.activeTextEditor.document) {
-                //provider.update(previewUri);
+                provider.update(previewUri);
             }
         });
     
         vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
             if (e.textEditor === vscode.window.activeTextEditor) {
-                //provider.update(previewUri);
+                provider.update(previewUri);
             }
         })
 
