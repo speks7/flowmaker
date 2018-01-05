@@ -15,14 +15,23 @@ export function activate(context: vscode.ExtensionContext) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json
-    /*let disposable = vscode.commands.registerCommand('extension.sayHello', () => {
+    /*let disposable1 = vscode.commands.registerCommand('extension.sayHello', () => {
         // The code you place here will be executed every time your command is executed
 
         // Display a message box to the user
         vscode.window.showInformationMessage('Hello World!');
-    });
+    });*/
 
-    context.subscriptions.push(disposable);*/
+    /*let disposable = vscode.commands.registerCommand('extension.showJsFlowchart', () => {
+
+        return vscode.commands.executeCommand('vscode.previewHtml', previewUri, vscode.ViewColumn.Two, 'JS Flowchart').then((success) => {
+        }, (reason) => {
+            vscode.window.showErrorMessage(reason);
+        });
+    });*/
+    
+
+    //context.subscriptions.push(disposable1);
 
     let previewUri = vscode.Uri.parse('js-preview://authority/js-preview');
         
@@ -94,7 +103,7 @@ export function activate(context: vscode.ExtensionContext) {
                 vscode.window.showErrorMessage(reason);
             });
         });
-
+        
         let highlight = vscode.window.createTextEditorDecorationType({ backgroundColor: 'rgba(200,200,200,.35)' });
 
         context.subscriptions.push(disposable, registration);
