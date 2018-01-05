@@ -35,6 +35,15 @@ export function activate(context: vscode.ExtensionContext) {
             public update(uri: vscode.Uri) {
                 this._onDidChange.fire(uri);
             }
+
+            private createJsPreview() {
+                let editor = vscode.window.activeTextEditor;
+                if (!(editor.document.languageId === 'javascript')) {
+                    //return this.errorSnippet(`Active editor doesn't show a JS document - nothen to preview. ${editor.document.languageId}`)
+                }
+                //return this.extractSnippet();
+            }
+
         }
         let provider = new TextDocumentContentProvider();
         let registration = vscode.workspace.registerTextDocumentContentProvider('js-preview', provider);
