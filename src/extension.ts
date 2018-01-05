@@ -28,33 +28,57 @@ export function activate(context: vscode.ExtensionContext) {
         // Display a message box to the user
         vscode.window.showInformationMessage('Hello World!');
     });
-
     context.subscriptions.push(disposable);
 }
 class FlowOnBrowser{
-    app :express;
-    server:HTTP.Server;
-    io;
+    static app :express;
+    static server:HTTP.Server;
+    static io;
     constructor()
     {
-        this.app= express();
-        this.app.use(express.static(ExtensionConstants.EXPRESSROOT));
-        this.server=HTTP.createServer(this.app);
-        this.io=socket.listen(this.server);
-        this.server.listen(ExtensionConstants.PORT);
-        this.initializeEventHandlers();
+        FlowOnBrowser.app= express();
+        FlowOnBrowser.app.use(express.static(ExtensionConstants.EXPRESSROOT));
+        FlowOnBrowser.server=HTTP.createServer(FlowOnBrowser.app);
+        FlowOnBrowser.io=socket.listen(FlowOnBrowser.server);
+        FlowOnBrowser.server.listen(ExtensionConstants.PORT);
         window.onDidChangeTextEditorSelection(this.showFlow);
         window.onDidChangeActiveTextEditor(this.showFlow);
+        
         this.showFlow=this.showFlow.bind(this);
+        this.initializeEventHandlers();
     }
     private initializeEventHandlers(){
-
+        console.log('event handelers initialized');
+        FlowOnBrowser.app.get('/',(req,res)=>{
+            res.sendFile(__dirname+'/html/index.html');
+        });
+        FlowOnBrowser.io.sockets.on('connection',(socket)=>{
+            console.log('new connection');
+            this.showFlow();
+        });
     }
     private showFlow()
     {
-
+        let editor = window.activeTextEditor;//.document.getText();;
+        if (!editor) 
+        {
+            console.log('null editor');
+            return;
+        }
+       let code=editor.document.getText();
+       if(code)
+       {
+        const svg = js2flowchart.convertCodeToSvg(code);
+        console.log('updating flow '+code);
+        FlowOnBrowser.io.emit('update',{svg});
+       }
+    }
+    public stopServer()
+    {
+        FlowOnBrowser.server.close();
     }
 }
 // this method is called when your extension is deactivated
 export function deactivate() {
+    flowBrowser.stopServer();
 }

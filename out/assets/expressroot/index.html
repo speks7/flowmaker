@@ -8,17 +8,19 @@
 			  src="./jquery-3.2.1.min.js"></script>
 <script src="./socket.io.js"></script>
   <title>Flow generate</title>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 <body>
     <div class="main">
-      test
-    </div>
+        test
+      </div>
 </body>
 <script>
   $(()=>{
-    let socket=io.connect('http://localhost:8080');
+    let socket=io.connect();
     socket.on('update',function(data){
       $('div.main').html(data.svg);
+      console.log("new update");
     });
   });
 </script>
