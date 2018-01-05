@@ -1,4 +1,6 @@
-out
 node_modules
+out/*.js
+out/*.js.map
+out/test/
 .vscode-test/
 .vsix
