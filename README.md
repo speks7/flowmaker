@@ -11,15 +11,14 @@ For only using the onEditor and onBrowser SVG generation follow the <a href="htt
 - Write Javascript.
 - Select a function or object or entire file.  
 - Hit ctrl-f1.
-- Choose either 'Flowmake onEditor' or 'Flowmake onEditor'.
-- 'Flowmake onEditor' generates the SVG layout in side column of editor itself.
-- 'Flowmake onBrowser' strats a node server on localhost with port 8080 to view and download the SVG code.
+- Choose 'Flowmake magic'.
+- 'Flowmake magic' generates the SVG layout in side column of editor itself.
 
 ## Installation
 
 Clone the source locally:
 ```
-$ git clone https://github.com/aryaminus/flowmaker
+$ git clone -b livepreview https://github.com/aryaminus/flowmaker/tree/livepreview
 $ cd flowmaker
 $ npm install
 ```
@@ -28,25 +27,21 @@ $ npm install
 ```
 hit Ctrl+f5
 hit Fn+f1 or F1
-choose Flowmake onEditor or Flowmake onBrowser
+choose 'Flowmake Magic'
 ```
 or from VS-Code Market:
 ```
-downlodd Flowmaker extension
+download Flowmaker extension
 hit Fn+f1 or F1
-choose Flowmake onEditor or Flowmake onBrowser
+choose Flowmake onEditor
 ```
 ## Packages:
 1. <a href="https://github.com/Bogdan-Lyashenko/js-code-to-svg-flowchart" target="_blank">js2flowchart</a>
 2. <a href="https://github.com/GramParallelo/atom-js-code-to-svg-to-preview" target="_blank">atom-js-code-to-svg-to-preview</a>
-3. <a href="https://github.com/expressjs/express" target="_blank">express</a>
-4. <a href="https://github.com/socketio/socket.io" target="_blank">socket.io</a>
 
 ## Features
 
 [![onEditor demo](https://i.imgur.com/F3LC8LA.png)](https://i.imgur.com/F3LC8LA.png)
-
-[![onBrowser demo](https://i.imgur.com/Hw9SZ5M.png)](https://i.imgur.com/Hw9SZ5M.png)
 
 ### TODO:
 - [ ] JSX support
@@ -54,13 +49,6 @@ choose Flowmake onEditor or Flowmake onBrowser
 - [ ] Chrome extension for dev-tools
 - [ ] Fetching SVG to generate and manipulate code to genrate code from flowchart
 
-## Requirements
-
-1. Node server installed
-2. Socket.io and express installed ie.
-```
-npm install --save express socket.io
-```
 
 -----------------------------------------------------------------------------------------------------------
 
