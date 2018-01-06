@@ -1,6 +1,6 @@
-# flowmaker README
+# Flowmaker
 
-This is the README for your extension "flowmaker". After writing up a brief description, we recommend including the following sections.
+Flowmaker is an VSCode extension used to generate a flowchart in SVG format of JS code to demonstrate Code flow scheme from different level of conduct.
 
 ## Features
 
