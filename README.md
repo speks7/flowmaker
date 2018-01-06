@@ -2,6 +2,14 @@
 
 Flowmaker is an VSCode extension used to generate a flowchart in SVG format of JS code to demonstrate Code flow scheme from different level of conduct.
 
+## Instructions
+- Write Javascript.
+- Select a function or object or entire file.  
+- Hit ctrl-f1.
+- Choose either 'Flowmake onEditor' or 'Flowmake onEditor'.
+- 'Flowmake onEditor' generates the SVG layout in side column of editor itself.
+- 'Flowmake onBrowser' strats a node server on localhost with port 8080 to view and download the SVG code.
+
 ## Features
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
