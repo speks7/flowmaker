@@ -1,15 +1,16 @@
 {
     "name": "flowmaker",
     "displayName": "flowmaker",
-    "description": "vs code extension for live js code visualization'",
+    "description": "Vs code extension for live js code visualization'",
     "version": "0.0.1",
-    "publisher": "psuzn",
+    "publisher": "speks",
     "engines": {
         "vscode": "^1.19.0"
     },
     "categories": [
         "Other"
     ],
+    "icon": "images/icon.png",
     "activationEvents": [
         "onLanguage:javascript"
     ],
