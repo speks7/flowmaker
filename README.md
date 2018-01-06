@@ -31,8 +31,10 @@ downlodd Flowmaker extension
 hit Fn+f1 or F1
 choose Flowmake onEditor or Flowmake onBrowser
 ```
-**Else**
-Follow Code.txt and <a href="https://youtu.be/-sweQ2HzjrA" target="_blank">Youtube</a>
+## Packages:
+<a href="https://github.com/Bogdan-Lyashenko/js-code-to-svg-flowchart" target="_blank">js2flowchart</a>
+<a href="https://github.com/GramParallelo/atom-js-code-to-svg-to-preview" target="_blank">atom-js-code-to-svg-to-preview
+</a>
 
 ## Features
 
