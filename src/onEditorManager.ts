@@ -30,6 +30,6 @@ export class TextDocumentContentProvider
       }
       let text = WindowP.document.getText();
       const svg = js2flowchart.convertCodeToSvg(text);
-      return `<body>${svg}</body>`;
+      return `<body style="background-color:white;">${svg}</body>`;
     }
   }
