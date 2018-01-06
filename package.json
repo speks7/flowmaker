@@ -11,6 +11,10 @@
         "Other"
     ],
     "icon": "images/icon.png",
+    "galleryBanner": {
+        "color": "#0D47A1",
+        "theme": "dark"
+    },
     "activationEvents": [
         "onLanguage:javascript"
     ],
@@ -40,9 +44,20 @@
         "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
     },
-    "dependencies": {
+    "license": "SEE LICENSE IN LICENSE.txt",
+    "bugs": {
+        "url": "https://github.com/aryaminus/flowmaker/issues",
+        "email": "sunim.54@gmail.com"
+    },
+        "dependencies": {
         "express": "^4.16.2",
         "js2flowchart": "^1.1.3",
         "socket.io": "^2.0.4"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/aryaminus/flowmaker.git"
+    },
+    "homepage": "https://github.com/aryaminus/flowmaker/blob/master/README.md"
+
 }
