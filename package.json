@@ -1,14 +1,24 @@
 {
     "name": "flowmaker",
     "displayName": "flowmaker",
-    "description": "Vs code extension for live js code visualization'",
-    "version": "0.0.1",
+    "description": "VS-code extension for live JS code visualization in Flowchart",
+    "version": "1.0.2",
     "publisher": "speks",
     "engines": {
         "vscode": "^1.19.0"
     },
     "categories": [
-        "Other"
+        "Other",
+        "Languages",
+        "Snippets"
+    ],
+    "keywords": [
+        "Flowchart",
+        "Diagram",
+        "Javascript",
+        "Visualization",
+        "SVG",
+        "Live preview"
     ],
     "icon": "images/icon.png",
     "galleryBanner": {
