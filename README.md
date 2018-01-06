@@ -53,18 +53,11 @@ choose Flowmake onEditor or Flowmake onBrowser
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+1. Node server installed
+2. Socket.io and express installed ie.
+```
+npm install --save express socket.io
+```
 
 ## Known Issues
 
