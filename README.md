@@ -49,8 +49,10 @@ choose Flowmake onEditor or Flowmake onBrowser
 [![onBrowser demo](https://i.imgur.com/Hw9SZ5M.png)](https://i.imgur.com/Hw9SZ5M.png)
 
 ### TODO:
-- [ ] Tests
-- [ ] Coffeescript?
+- [ ] JSX support
+- [ ] Flow,CLI and Typescript support
+- [ ] Chrome extension for dev-tools
+- [ ] Fetching SVG to generate and manipulate code to genrate code from flowchart
 
 ## Requirements
 
