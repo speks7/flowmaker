@@ -32,8 +32,12 @@ hit Fn+f1 or F1
 choose Flowmake onEditor or Flowmake onBrowser
 ```
 ## Packages:
-<a href="https://github.com/Bogdan-Lyashenko/js-code-to-svg-flowchart" target="_blank">js2flowchart</a>
-<a href="https://github.com/GramParallelo/atom-js-code-to-svg-to-preview" target="_blank">atom-js-code-to-svg-to-preview
+1. <a href="https://github.com/Bogdan-Lyashenko/js-code-to-svg-flowchart" target="_blank">js2flowchart</a>
+2. <a href="https://github.com/GramParallelo/atom-js-code-to-svg-to-preview" target="_blank">atom-js-code-to-svg-to-preview
+</a>
+3. <a href="https://github.com/expressjs/express" target="_blank">express
+</a>
+4. <a href="https://github.com/socketio/socket.io" target="_blank">socket.io
 </a>
 
 ## Features
