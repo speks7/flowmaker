@@ -1,1 +1,7 @@
-language: typescript
+language: node_js
+node_js:
+- '^7.0.43'
+before_install:
+- npm install -g typescript@^2.6.1
+script:
+- npm test
