@@ -2,9 +2,9 @@
 
 Flowmaker is an VSCode extension used to generate a flowchart in SVG format of `javascript` code to demonstrate Code flow scheme from different level of conduct.
 
-![Flowmaker features](https://i.imgur.com/FIacJUP.gif)
+[![Flowmaker features](https://i.imgur.com/FIacJUP.gif)](https://youtu.be/ySW2ejs6f84)
 
-[![onBrowser demo](https://i.imgur.com/k77hQLy.png)](https://i.imgur.com/k77hQLy.png)
+[![onBrowser demo](https://i.imgur.com/k77hQLy.png)](https://youtu.be/ySW2ejs6f84)
 
 **Note:**
 For only using the onEditor SVG generation follow the <a href="https://github.com/aryaminus/flowmaker/tree/livepreview" target="_blank">livepreview</a> branch code.
@@ -19,9 +19,9 @@ For only using the onEditor SVG generation follow the <a href="https://github.co
 
 ## Installation
 
-From [VS Code](https://code.visualstudio.com) Market:
+From [VS Code](https://code.visualstudio.com) Market [Install Flowmaker](https://goo.gl/yRmQNk):
 ```
-[Install Flowmaker](https://goo.gl/yRmQNk) extension
+Install Flowmaker extension
 Open any .js file
 hit Fn+f1 or F1
 choose Flowmake onEditor or Flowmake onBrowser
@@ -49,9 +49,9 @@ choose Flowmake onEditor or Flowmake onBrowser
 
 ## Features
 
-[![onEditor demo](https://i.imgur.com/F3LC8LA.png)](https://i.imgur.com/F3LC8LA.png)
+[![onEditor demo](https://i.imgur.com/F3LC8LA.png)](https://youtu.be/ySW2ejs6f84)
 
-[![onBrowser demo](https://i.imgur.com/Hw9SZ5M.png)](https://i.imgur.com/Hw9SZ5M.png)
+[![onBrowser demo](https://i.imgur.com/Hw9SZ5M.png)](https://youtu.be/ySW2ejs6f84)
 
 ### TODO:
 - [ ] JSX support
