@@ -1,6 +1,8 @@
 # Flowmaker
 
-Flowmaker is an VSCode extension used to generate a flowchart in SVG format of JS code to demonstrate Code flow scheme from different level of conduct.
+Flowmaker is an VSCode extension used to generate a flowchart in SVG format of `javascript` code to demonstrate Code flow scheme from different level of conduct.
+
+![Flowmaker features](https://i.imgur.com/FIacJUP.gif)
 
 [![onBrowser demo](https://i.imgur.com/k77hQLy.png)](https://i.imgur.com/k77hQLy.png)
 
@@ -17,25 +19,28 @@ For only using the onEditor SVG generation follow the <a href="https://github.co
 
 ## Installation
 
+From [VS Code](https://code.visualstudio.com) Market:
+```
+[Install Flowmaker](https://goo.gl/yRmQNk) extension
+Open any .js file
+hit Fn+f1 or F1
+choose Flowmake onEditor or Flowmake onBrowser
+```
+***or,***
 Clone the source locally:
 ```
 $ git clone https://github.com/aryaminus/flowmaker
 $ cd flowmaker
 $ npm install
 ```
-
+***and,***
 **Start the application in development mode**
 ```
 hit Ctrl+f5
 hit Fn+f1 or F1
 choose Flowmake onEditor or Flowmake onBrowser
 ```
-or from VS-Code Market:
-```
-downlodd Flowmaker extension
-hit Fn+f1 or F1
-choose Flowmake onEditor or Flowmake onBrowser
-```
+
 ## Packages:
 1. <a href="https://github.com/Bogdan-Lyashenko/js-code-to-svg-flowchart" target="_blank">js2flowchart</a>
 2. <a href="https://github.com/GramParallelo/atom-js-code-to-svg-to-preview" target="_blank">atom-js-code-to-svg-to-preview</a>
