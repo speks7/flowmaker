@@ -19,16 +19,26 @@ export class FlowOnBrowser{
     constructor()
     {
         FlowOnBrowser.app= express();
-        FlowOnBrowser.app.use(express.static(ExtensionConstants.EXPRESSROOT));
-        FlowOnBrowser.server=HTTP.createServer(FlowOnBrowser.app);
-        FlowOnBrowser.io=socket.listen(FlowOnBrowser.server);
-        FlowOnBrowser.server.listen(ExtensionConstants.PORT);
-        window.onDidChangeTextEditorSelection(this.showFlow);
-        window.onDidChangeActiveTextEditor(this.showFlow);
+
         this.showFlow=this.showFlow.bind(this);
+        this.SVGDownload=this.SVGDownload.bind(this);
         this.initializeEventHandlers();
     }
     private initializeEventHandlers(){
+        //for express server
+        FlowOnBrowser.app.use(express.static(ExtensionConstants.EXPRESSROOT));
+        FlowOnBrowser.app.get('/svg', (req, res)=>{
+            this.SVGDownload(req,res);});
+          
+        FlowOnBrowser.server=HTTP.createServer(FlowOnBrowser.app);
+        FlowOnBrowser.io=socket.listen(FlowOnBrowser.server);
+        FlowOnBrowser.server.listen(ExtensionConstants.PORT);
+
+        //for editor event handelling
+        window.onDidChangeTextEditorSelection(this.showFlow);
+        window.onDidChangeActiveTextEditor(this.showFlow);
+
+
         console.log('event handelers initialized');
         FlowOnBrowser.app.get('/',(req,res)=>{
             res.sendFile(__dirname+'/html/index.html');
@@ -37,6 +47,30 @@ export class FlowOnBrowser{
             console.log('new connection');
             this.showFlow();
         });
+    }
+    private SVGDownload(req,res)
+    {
+        let svg:string;
+        let fileName="";
+        let editor = window.activeTextEditor;
+        if (!editor || editor.document.languageId!== "javascript") 
+            svg=' ';
+        else
+        {
+            let code=editor.document.getText();
+            if(!code)
+                svg=' ';
+            else
+            {
+                svg = js2flowchart.convertCodeToSvg(code);
+                fileName=editor.document.fileName.split("/").slice(-1)[0];
+            }
+        }
+        res.setHeader('Content-disposition', 'attachment; filename='+fileName.replace(".js",".svg"));
+        res.setHeader('Content-type', 'image/svg+xml');
+        res.charset = 'UTF-8';
+        res.write(svg);
+        res.end();
     }
     private showFlow()
     {
