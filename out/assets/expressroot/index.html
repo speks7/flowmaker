@@ -79,7 +79,10 @@
   <div class="SVG-Container">
    <img src="./pacman.gif" alt="loading..">
   </div>
-  <button id="downloadFile">DOWNLOAD SVG FILE</button>
+  <a href="./svg">
+    <button id="downloadFile">DOWNLOAD SVG FILE</button>
+  </a>
+  
   <button id="fileName"></button>
 </body>
 <script>
@@ -105,15 +108,7 @@
     $('button#fileName').html(data.fileName);
     console.log("new update");
   }
-  function SVGSave() {
-    if (!$('div.SVG-Container').html())
-      alert("Empty flowchart");
-    else {
-      const fileName = `flowchart_${(new Date().toString()).replace(/ /g, '_')}.svg`;
-      file = new File([$('div.SVG-Container').html()], fileName, { type: 'image/svg+xml;charset=utf-8' });
-      window.saveAs(file, fileName);
-    }
-  }
+
 
   $(() => {
     let socket = io.connect();
