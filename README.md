@@ -15,7 +15,7 @@ For only using the onEditor SVG generation follow the <a href="https://github.co
 - Hit ctrl-f1.
 - Choose either 'Flowmake onEditor' or 'Flowmake onBrowser'.
 - 'Flowmake onEditor' generates the SVG layout in side column of editor itself.
-- 'Flowmake onBrowser' strats a node server on localhost with port 8080 to view and download the SVG code.
+- 'Flowmake onBrowser' starts a node server on localhost with port 8080 to view and download the SVG code.
 
 ## Installation
 
