@@ -32,6 +32,10 @@
     "contributes": {
         "commands": [
             {
+                "command": "extension.Saver",
+                "title": "Flowmaker Saver"
+            },
+            {
                 "command": "extension.onBrowser",
                 "title": "Flowmaker on browser"
             },

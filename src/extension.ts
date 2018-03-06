@@ -33,28 +33,31 @@ export function activate(context: vscode.ExtensionContext) {
   console.log("active!");
 
   let lastUsedImageUri = vscode.Uri.file(
-    path.resolve(homedir(), "Desktop/code.png")
+    path.resolve(homedir(), "Desktop/code.svg")
   );
 
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with  registerCommand
   // The commandId parameter must match the command field in package.json
 
-  vscode.commands.registerCommand("extension.Saver", serializedBlob => {
-    vscode.window
-      .showSaveDialog({
-        defaultUri: lastUsedImageUri,
-        filters: {
-          Images: ["png"]
-        }
-      })
-      .then(uri => {
-        if (uri) {
-          writeSerializedBlobToFile(serializedBlob, uri.fsPath);
-          lastUsedImageUri = uri;
-        }
-      });
-  });
+  let disposableSaver = vscode.commands.registerCommand(
+    "extension.Saver",
+    serializedBlob => {
+      vscode.window
+        .showSaveDialog({
+          defaultUri: lastUsedImageUri,
+          filters: {
+            Images: ["svg"]
+          }
+        })
+        .then(uri => {
+          if (uri) {
+            writeSerializedBlobToFile(serializedBlob, uri.fsPath);
+            lastUsedImageUri = uri;
+          }
+        });
+    }
+  );
 
   let disposableBrowser = vscode.commands.registerCommand(
     "extension.onBrowser",
@@ -99,6 +102,7 @@ export function activate(context: vscode.ExtensionContext) {
       );
     }
   );
+  context.subscriptions.push(disposableSaver);
   context.subscriptions.push(disposableBrowser);
   context.subscriptions.push(disposableOnVSCode);
 }
