@@ -35,9 +35,10 @@ export function activate(context: vscode.ExtensionContext) {
   console.log("active!");
 
   let fileName = window.activeTextEditor.document.fileName.split("/").slice(-1)[0].replace(".js",".svg").toString();
+  let dirName = path.dirname(window.activeTextEditor.document.fileName).toString();
 
   let lastUsedImageUri = vscode.Uri.file(
-    path.resolve(homedir(), "Desktop/" + fileName)
+    path.resolve(homedir(), dirName + "/" + fileName)
   );
 
   let disposableSaver = vscode.commands.registerCommand(
