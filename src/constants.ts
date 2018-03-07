@@ -1,5 +1,6 @@
-import { dirname } from "path";
+//import { dirname } from "path";
 import { Uri } from "vscode";
+
 export namespace ErrorMessages {
   export const NO_HTML = "The current editor doesn't show a HTML document.";
 }

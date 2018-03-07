@@ -31,7 +31,7 @@ export class TextDocumentContentProvider
     }
     let text = WindowP.document.getText();
     const svg1 = js2flowchart.convertCodeToSvg(text);
-    
+
     return `
     <style>
     #downloadFile {
@@ -51,7 +51,7 @@ export class TextDocumentContentProvider
   </style>
     <body style="background-color:white;">
       <div>${svg1}</div>
-      <div><button onclick="save()" id="downloadFile">DOWNLOAD SVG FILE</button></div>
+      <!--<div><button onclick="save()" id="downloadFile">DOWNLOAD SVG FILE</button></div>-->
     </body>
     <script>
     function save()

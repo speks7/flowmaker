@@ -1,10 +1,8 @@
 "use strict";
 import * as vscode from "vscode";
-import * as HTTP from "http";
-import * as express from "express";
-import * as socket from "socket.io";
 import * as js2flowchart from "js2flowchart";
 import * as path from "path";
+import * as process from "process";
 import { window, commands, Uri } from "vscode";
 import { dirname } from "path";
 import { writeFileSync } from "fs";
@@ -36,8 +34,10 @@ export function activate(context: vscode.ExtensionContext) {
   // This line of code will only be executed once when your extension is activated
   console.log("active!");
 
+  let fileName = window.activeTextEditor.document.fileName.split("/").slice(-1)[0].replace(".js",".svg").toString();
+
   let lastUsedImageUri = vscode.Uri.file(
-    path.resolve(homedir(), "Desktop/code.svg")
+    path.resolve(homedir(), "Desktop/" + fileName)
   );
 
   let disposableSaver = vscode.commands.registerCommand(
