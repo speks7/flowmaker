@@ -13,7 +13,7 @@ For showing in both Browser and Editor follow the <a href="https://github.com/ar
 
 ## Instructions
 - Write Javascript.
-- Select a function or object or entire file.  
+- Select a function or object or entire file.
 - Hit ctrl-f1.
 - Choose either 'Flowmaker: Preview' or 'Flowmaker: Save'.
 - 'Flowmaker: Preview' generates the SVG layout in side column of editor itself.
@@ -45,14 +45,12 @@ $ npm install
 ```
 hit Ctrl+f5
 hit Fn+f1 or F1
-choose Flowmake onEditor or Flowmake onBrowser
+choose Flowmaker: Save or Flowmaker: Preview
 ```
 
 ## Packages:
 1. <a href="https://github.com/Bogdan-Lyashenko/js-code-to-svg-flowchart" target="_blank">js2flowchart</a>
 2. <a href="https://github.com/GramParallelo/atom-js-code-to-svg-to-preview" target="_blank">atom-js-code-to-svg-to-preview</a>
-3. <a href="https://github.com/expressjs/express" target="_blank">express</a>
-4. <a href="https://github.com/socketio/socket.io" target="_blank">socket.io</a>
 
 ## Features
 
@@ -63,14 +61,6 @@ choose Flowmake onEditor or Flowmake onBrowser
 - [ ] Flow,CLI and Typescript support
 - [ ] Chrome extension for dev-tools
 - [ ] Fetching SVG to generate and manipulate code to genrate code from flowchart
-
-## Requirements for onBrowser
-
-1. Node server installed
-2. Socket.io and express installed ie.
-```
-npm install --save express socket.io
-```
 
 -----------------------------------------------------------------------------------------------------------
 
