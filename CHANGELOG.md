@@ -3,6 +3,9 @@ All notable changes to the "flowmaker" extension will be documented in this file
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 1.2.0
+- Removed onBrowser with Saving option command within editor
+
 ## 1.1.0
 - Updated FileSaver to get the SVG
 
@@ -13,7 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Added tags and dependencies
 
 ## 1.0.1
-- Update logo and desccription
+- Update logo and description
 
 ## 0.0.1
 - Initial release

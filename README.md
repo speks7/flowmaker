@@ -9,19 +9,26 @@ Flowmaker is an VSCode extension used to generate a flowchart in SVG format of `
 **Note:**
 For only using the onEditor SVG generation follow the <a href="https://github.com/aryaminus/flowmaker/tree/livepreview" target="_blank">livepreview</a> branch code.
 
+For showing in both Browser and Editor follow the <a href="https://github.com/aryaminus/flowmaker/tree/onBrowser" target="_blank">onBrowser</a> branch code.
+
 ## Instructions
 - Write Javascript.
 - Select a function or object or entire file.  
 - Hit ctrl-f1.
-- Choose either 'Flowmake onEditor' or 'Flowmake onBrowser'.
-- 'Flowmake onEditor' generates the SVG layout in side column of editor itself.
-- 'Flowmake onBrowser' starts a node server on localhost with port 8080 to view and download the SVG code.
+- Choose either 'Flowmaker: Preview' or 'Flowmaker: Save'.
+- 'Flowmaker: Preview' generates the SVG layout in side column of editor itself.
+- 'Flowmaker: Save' allws the user to download the SVG code in the same directory as the file.
 
 ## Installation
 
 From [VS Code](https://code.visualstudio.com) Market [Install Flowmaker](https://goo.gl/yRmQNk):
+**Install Flowmaker extension:**
 ```
-Install Flowmaker extension
+Launch VS Code Quick Open (Ctrl+P), paste the following command:
+ext install speks.flowmaker
+```
+Then,
+```
 Open any .js file
 hit Fn+f1 or F1
 choose Flowmake onEditor or Flowmake onBrowser
@@ -51,15 +58,13 @@ choose Flowmake onEditor or Flowmake onBrowser
 
 [![onEditor demo](https://i.imgur.com/F3LC8LA.png)](https://youtu.be/ySW2ejs6f84)
 
-[![onBrowser demo](https://i.imgur.com/Hw9SZ5M.png)](https://youtu.be/ySW2ejs6f84)
-
 ### TODO:
 - [ ] JSX support
 - [ ] Flow,CLI and Typescript support
 - [ ] Chrome extension for dev-tools
 - [ ] Fetching SVG to generate and manipulate code to genrate code from flowchart
 
-## Requirements
+## Requirements for onBrowser
 
 1. Node server installed
 2. Socket.io and express installed ie.
