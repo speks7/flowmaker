@@ -32,6 +32,10 @@
     "contributes": {
         "commands": [
             {
+                "command": "extension.Saver",
+                "title": "Save SVG file"
+            },
+            {
                 "command": "extension.onBrowser",
                 "title": "Flowmaker on browser"
             },
