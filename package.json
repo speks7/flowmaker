@@ -33,7 +33,7 @@
         "commands": [
             {
                 "command": "extension.Saver",
-                "title": "Flowmaker Saver"
+                "title": "Save SVG file"
             },
             {
                 "command": "extension.onBrowser",

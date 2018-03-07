@@ -22,9 +22,15 @@ let flowBrowser: FlowOnBrowser;
 let flowVS: TextDocumentContentProvider;
 //let flowVSCpde:
 
-const writeSerializedBlobToFile = (serializeBlob, fileName) => {
-  const bytes = new Uint8Array(serializeBlob.split(","));
-  writeFileSync(fileName, new Buffer(bytes));
+const writeTofile = (fileName) => {
+  let WindowP = vscode.window.activeTextEditor;
+    if (!(WindowP.document.languageId === "javascript")) {
+      return "Only .js file is supported";
+    }
+    let text = WindowP.document.getText();
+    let svg = js2flowchart.convertCodeToSvg(text);
+  var result=writeFileSync(fileName, svg);
+  vscode.window.showInformationMessage(`SVG file saved as ${fileName}`);
 };
 
 export function activate(context: vscode.ExtensionContext) {
@@ -36,13 +42,10 @@ export function activate(context: vscode.ExtensionContext) {
     path.resolve(homedir(), "Desktop/code.svg")
   );
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with  registerCommand
-  // The commandId parameter must match the command field in package.json
 
   let disposableSaver = vscode.commands.registerCommand(
     "extension.Saver",
-    serializedBlob => {
+    ()=>{
       vscode.window
         .showSaveDialog({
           defaultUri: lastUsedImageUri,
@@ -52,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
         })
         .then(uri => {
           if (uri) {
-            writeSerializedBlobToFile(serializedBlob, uri.fsPath);
+            writeTofile(uri.fsPath);
             lastUsedImageUri = uri;
           }
         });

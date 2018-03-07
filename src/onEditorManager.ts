@@ -32,19 +32,7 @@ export class TextDocumentContentProvider
     }
     let text = WindowP.document.getText();
     const svg1 = js2flowchart.convertCodeToSvg(text);
-    /*const SVGSave = vscode.window
-      .showSaveDialog({
-        defaultUri: lastUsedImageUri,
-        filters: {
-          Images: ["svg"]
-        }
-      })
-      .then(uri => {
-        if (uri) {
-          writeFileSync(uri.fsPath);
-          lastUsedImageUri = uri;
-        }
-      });*/
+    
     return `
     <style>
     #downloadFile {
@@ -64,9 +52,14 @@ export class TextDocumentContentProvider
   </style>
     <body style="background-color:white;">
       <div>${svg1}</div>
-      <div><button id="downloadFile">DOWNLOAD SVG FILE</button></div>
+      <div><button onclick="save()" id="downloadFile">DOWNLOAD SVG FILE</button></div>
     </body>
     <script>
+    function save()
+    {
+      uriContent = "data:application/octet-stream," + encodeURIComponent(${svg1});
+      newWindow = window.open(uriContent, 'neuesDokument');
+    }
     function SVGSave() {
       let lastUsedImageUri = vscode.Uri.file(
         path.resolve(homedir(), "Desktop/"+svg1+".svg")
