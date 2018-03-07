@@ -30,6 +30,26 @@ export class TextDocumentContentProvider
     }
     let text = WindowP.document.getText();
     const svg = js2flowchart.convertCodeToSvg(text);
-    return `<body style="background-color:white;">${svg}</body>`;
+    return `
+    <style>
+    #downloadFile {
+      position: fixed;
+      right: 20px;
+      bottom: 5px;
+      padding: 5px 10px;
+      background: white;
+      border: 1px solid #2288ff;
+      outline: none;
+      font-weight: bold;
+      color: #2288ff;
+      font-family: sans-serif;
+      cursor: pointer;
+      z-index: 10;
+    }
+  </style>
+    <body style="background-color:white;">
+      <div>${svg}</div>
+      <div><button id="downloadFile">DOWNLOAD SVG FILE</button></div>
+    </body>`;
   }
 }
