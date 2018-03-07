@@ -4,6 +4,8 @@
 import * as vscode from "vscode";
 import * as js2flowchart from "js2flowchart";
 import { ExtensionConstants } from "./constants";
+import * as path from "path";
+const { homedir } = require("os");
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -25,11 +27,27 @@ export class TextDocumentContentProvider
 
   private JsRenderView() {
     let WindowP = vscode.window.activeTextEditor;
+    let lastUsedImageUri = vscode.Uri.file(
+      path.resolve(homedir(), "Desktop/code.svg")
+    );
     if (!(WindowP.document.languageId === "javascript")) {
       return "Only .js file is supported";
     }
     let text = WindowP.document.getText();
     const svg = js2flowchart.convertCodeToSvg(text);
+    const SVGSave = vscode.window
+      .showSaveDialog({
+        defaultUri: lastUsedImageUri,
+        filters: {
+          Images: ["svg"]
+        }
+      })
+      .then(uri => {
+        if (uri) {
+          writeFileSync(uri.fsPath);
+          lastUsedImageUri = uri;
+        }
+      });
     return `
     <style>
     #downloadFile {
@@ -50,6 +68,8 @@ export class TextDocumentContentProvider
     <body style="background-color:white;">
       <div>${svg}</div>
       <div><button id="downloadFile">DOWNLOAD SVG FILE</button></div>
-    </body>`;
+    </body>
+    <script>$('button#downloadFile').click(SVGSave);</script> 
+    `;
   }
 }
