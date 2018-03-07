@@ -27,15 +27,12 @@ export class TextDocumentContentProvider
 
   private JsRenderView() {
     let WindowP = vscode.window.activeTextEditor;
-    let lastUsedImageUri = vscode.Uri.file(
-      path.resolve(homedir(), "Desktop/code.svg")
-    );
     if (!(WindowP.document.languageId === "javascript")) {
       return "Only .js file is supported";
     }
     let text = WindowP.document.getText();
-    const svg = js2flowchart.convertCodeToSvg(text);
-    const SVGSave = vscode.window
+    const svg1 = js2flowchart.convertCodeToSvg(text);
+    /*const SVGSave = vscode.window
       .showSaveDialog({
         defaultUri: lastUsedImageUri,
         filters: {
@@ -47,7 +44,7 @@ export class TextDocumentContentProvider
           writeFileSync(uri.fsPath);
           lastUsedImageUri = uri;
         }
-      });
+      });*/
     return `
     <style>
     #downloadFile {
@@ -66,10 +63,31 @@ export class TextDocumentContentProvider
     }
   </style>
     <body style="background-color:white;">
-      <div>${svg}</div>
+      <div>${svg1}</div>
       <div><button id="downloadFile">DOWNLOAD SVG FILE</button></div>
     </body>
-    <script>$('button#downloadFile').click(SVGSave);</script> 
+    <script>
+    function SVGSave() {
+      let lastUsedImageUri = vscode.Uri.file(
+        path.resolve(homedir(), "Desktop/"+svg1+".svg")
+      );
+      vscode.window
+      .showSaveDialog({
+        defaultUri: lastUsedImageUri,
+        filters: {
+          Images: ["svg"]
+        }
+      })
+      .then(uri => {
+        if (uri) {
+          writeFileSync(uri.fsPath);
+          lastUsedImageUri = uri;
+        }
+      });
+
+    }
+    $('button#downloadFile').click(SVGSave);
+    </script> 
     `;
   }
 }
