@@ -3,7 +3,6 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import * as js2flowchart from "js2flowchart";
-import { ExtensionConstants } from "./constants";
 import * as path from "path";
 const { homedir } = require("os");
 // this method is called when your extension is activated

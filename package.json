@@ -32,16 +32,12 @@
     "contributes": {
         "commands": [
             {
-                "command": "extension.Saver",
-                "title": "Save SVG file"
-            },
-            {
-                "command": "extension.onBrowser",
-                "title": "Flowmaker on browser"
-            },
-            {
                 "command": "extension.onEditor",
-                "title": "Flowmaker on Editor"
+                "title": "Flowmaker: Preview SVG"
+            },
+            {
+                "command": "extension.Saver",
+                "title": "Flowmaker: Save SVG"
             }
         ]
     },
@@ -64,9 +60,7 @@
         "email": "sunim.54@gmail.com"
     },
     "dependencies": {
-        "express": "^4.16.2",
-        "js2flowchart": "^1.1.3",
-        "socket.io": "^2.0.4"
+        "js2flowchart": "^1.1.3"
     },
     "repository": {
         "type": "git",

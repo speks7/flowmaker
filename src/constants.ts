@@ -5,8 +5,8 @@ export namespace ErrorMessages {
 }
 
 export namespace ExtensionConstants {
-  export const PORT = 8080;
-  export const EXPRESSROOT = __dirname + "/assets/expressroot";
-  export const PREVIEW_URI = "HTMLPreview://authority/preview";
+  //export const PORT = 8080;
+  //export const EXPRESSROOT = __dirname + "/assets/expressroot";
+  //export const PREVIEW_URI = "HTMLPreview://authority/preview";
   export const liveURI = Uri.parse("flowmaker://authority/flowmaker");
 }

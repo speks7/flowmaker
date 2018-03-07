@@ -10,7 +10,6 @@ import { dirname } from "path";
 import { writeFileSync } from "fs";
 import { homedir } from "os";
 import { ExtensionConstants } from "./constants";
-import { FlowOnBrowser } from "./onBrowserManager";
 import { TextDocumentContentProvider } from "./onEditorManager";
 
 // The module 'vscode' contains the VS Code extensibility API
@@ -18,7 +17,6 @@ import { TextDocumentContentProvider } from "./onEditorManager";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-let flowBrowser: FlowOnBrowser;
 let flowVS: TextDocumentContentProvider;
 //let flowVSCpde:
 
@@ -42,7 +40,6 @@ export function activate(context: vscode.ExtensionContext) {
     path.resolve(homedir(), "Desktop/code.svg")
   );
 
-
   let disposableSaver = vscode.commands.registerCommand(
     "extension.Saver",
     ()=>{
@@ -62,18 +59,6 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  let disposableBrowser = vscode.commands.registerCommand(
-    "extension.onBrowser",
-    () => {
-      // The code you place here will be executed every time your command is executed
-      // Display a message box to the user
-      flowBrowser = new FlowOnBrowser();
-      vscode.window.showInformationMessage(
-        "Server started successfully on http:localhost:" +
-          ExtensionConstants.PORT
-      );
-    }
-  );
   let disposableOnVSCode = vscode.commands.registerCommand(
     "extension.onEditor",
     () => {
@@ -106,10 +91,9 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
   context.subscriptions.push(disposableSaver);
-  context.subscriptions.push(disposableBrowser);
   context.subscriptions.push(disposableOnVSCode);
 }
 // this method is called when your extension is deactivated
 export function deactivate() {
-  if (flowBrowser) flowBrowser.stopServer();
+  //if (flowBrowser) flowBrowser.stopServer();
 }
