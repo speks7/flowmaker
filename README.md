@@ -17,7 +17,7 @@ For showing in both Browser and Editor follow the <a href="https://github.com/ar
 - Hit ctrl-f1.
 - Choose either 'Flowmaker: Preview' or 'Flowmaker: Save'.
 - 'Flowmaker: Preview' generates the SVG layout in side column of editor itself.
-- 'Flowmaker: Save' allws the user to download the SVG code in the same directory as the file.
+- 'Flowmaker: Save' allows the user to download the SVG code in the same directory as the file.
 
 ## Installation
 
